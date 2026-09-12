@@ -8,7 +8,10 @@
       "Bash(git remote *)",
       "Bash(git branch *)",
       "Bash(git push *)",
-      "Bash(git commit -m 'Fix TypeScript errors for Next.js 16 deployment *)"
+      "Bash(git commit -m 'Fix TypeScript errors for Next.js 16 deployment *)",
+      "Bash(rm -rf .next)",
+      "Bash(npm run *)",
+      "Bash(git commit -m 'Fix TypeScript route handler and tone type issues *)"
     ]
   }
 }

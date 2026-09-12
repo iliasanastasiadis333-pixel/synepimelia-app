@@ -29,7 +29,7 @@ interface SwapRequestRecord {
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: any
 ) {
   try {
     const { id } = await params;
