@@ -24,19 +24,25 @@ export default function LandingPage() {
           <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
             Συνεπιμέλεια
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
             <Link href="/terms" className="text-gray-600 hover:text-gray-900 text-sm font-medium">
               Όροι Χρήσης
             </Link>
             <Link href="/privacy" className="text-gray-600 hover:text-gray-900 text-sm font-medium">
               Απόρρητο
             </Link>
-            <button
-              onClick={handleDemoClick}
+            <Link
+              href="/login"
+              className="px-4 py-2 border border-gray-300 text-gray-900 rounded-lg hover:bg-gray-50 transition text-sm font-medium"
+            >
+              Σύνδεση
+            </Link>
+            <Link
+              href="/signup"
               className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition text-sm font-medium"
             >
-              Είσοδος
-            </button>
+              Εγγραφή
+            </Link>
           </div>
         </nav>
       </header>
@@ -58,7 +64,7 @@ export default function LandingPage() {
               🚀 Δοκιμάστε το Demo
             </button>
             <Link
-              href="/dashboard"
+              href="/signup"
               className="px-8 py-4 border-2 border-gray-300 text-gray-900 rounded-lg hover:bg-gray-50 transition font-semibold text-lg"
             >
               Δημιουργία Λογαριασμού
