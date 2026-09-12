@@ -11,7 +11,8 @@
       "Bash(git commit -m 'Fix TypeScript errors for Next.js 16 deployment *)",
       "Bash(rm -rf .next)",
       "Bash(npm run *)",
-      "Bash(git commit -m 'Fix TypeScript route handler and tone type issues *)"
+      "Bash(git commit -m 'Fix TypeScript route handler and tone type issues *)",
+      "Bash(git commit --allow-empty -m 'Trigger Vercel redeploy *)"
     ]
   }
 }

@@ -54,6 +54,36 @@ export function ExpenseTracker({ caseId }: { caseId: string }) {
   const loadExpenses = async () => {
     try {
       setIsLoading(true);
+
+      // Demo Mode: Use mock data
+      if (isDemoMode) {
+        setExpenses([
+          {
+            id: 'demo-1',
+            description: 'Σχολικά είδη και φροντιστήριο',
+            amount: 120.50,
+            category: 'Education',
+            paid_by_id: '00000000-0000-0000-0000-000000000002',
+            status: 'approved',
+            created_at: new Date(Date.now() - 86400000 * 5).toISOString(),
+            approved_by_id: '00000000-0000-0000-0000-000000000001',
+          },
+          {
+            id: 'demo-2',
+            description: 'Γιατρικές εξετάσεις',
+            amount: 85.00,
+            category: 'Healthcare',
+            paid_by_id: '00000000-0000-0000-0000-000000000001',
+            status: 'approved',
+            created_at: new Date(Date.now() - 86400000 * 2).toISOString(),
+            approved_by_id: '00000000-0000-0000-0000-000000000002',
+          },
+        ]);
+        setError(null);
+        setIsLoading(false);
+        return;
+      }
+
       const { data, error: err } = await supabase
         .from('expenses')
         .select('*')
@@ -104,6 +134,27 @@ export function ExpenseTracker({ caseId }: { caseId: string }) {
     }
 
     setIsSubmitting(true);
+
+    // Demo Mode: Just add to local state
+    if (isDemoMode) {
+      await new Promise(r => setTimeout(r, 400));
+      const newExpenseObj: Expense = {
+        id: `demo-${Date.now()}`,
+        description: newExpense.description,
+        amount: parseFloat(newExpense.amount),
+        category: newExpense.category,
+        paid_by_id: currentUserId,
+        status: 'pending',
+        created_at: new Date().toISOString(),
+      };
+      setExpenses([newExpenseObj, ...expenses]);
+      setNewExpense({ description: '', amount: '', category: 'Other' });
+      setShowForm(false);
+      setError(null);
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const { error: err } = await supabase
         .from('expenses')
@@ -132,6 +183,16 @@ export function ExpenseTracker({ caseId }: { caseId: string }) {
   };
 
   const handleApprove = async (expenseId: string) => {
+    // Demo Mode: Just update local state
+    if (isDemoMode) {
+      setExpenses(expenses.map(exp =>
+        exp.id === expenseId
+          ? { ...exp, status: 'approved', approved_by_id: currentUserId }
+          : exp
+      ));
+      return;
+    }
+
     try {
       const { error: err } = await supabase
         .from('expenses')
@@ -147,6 +208,16 @@ export function ExpenseTracker({ caseId }: { caseId: string }) {
   };
 
   const handleReject = async (expenseId: string) => {
+    // Demo Mode: Just update local state
+    if (isDemoMode) {
+      setExpenses(expenses.map(exp =>
+        exp.id === expenseId
+          ? { ...exp, status: 'rejected' }
+          : exp
+      ));
+      return;
+    }
+
     try {
       const { error: err } = await supabase
         .from('expenses')

@@ -41,6 +41,24 @@ export function CustodyCalendar({ caseId }: { caseId: string }) {
   const loadSchedule = async () => {
     try {
       setLoading(true);
+
+      // Demo Mode: Use hard-coded schedule
+      if (isDemoMode) {
+        const demoSchedule: Record<number, string> = {
+          0: '00000000-0000-0000-0000-000000000002', // Monday: Dad
+          1: '00000000-0000-0000-0000-000000000002', // Tuesday: Dad
+          2: '00000000-0000-0000-0000-000000000001', // Wednesday: Mom
+          3: '00000000-0000-0000-0000-000000000001', // Thursday: Mom
+          4: '00000000-0000-0000-0000-000000000001', // Friday: Mom
+          5: '00000000-0000-0000-0000-000000000002', // Saturday: Dad
+          6: '00000000-0000-0000-0000-000000000002', // Sunday: Dad
+        };
+        setSchedule(demoSchedule);
+        setError(null);
+        setLoading(false);
+        return;
+      }
+
       const { data, error: err } = await supabase
         .from('custody_schedule')
         .select('day_of_week, parent_id')
@@ -110,6 +128,17 @@ export function CustodyCalendar({ caseId }: { caseId: string }) {
     }
 
     setIsSubmittingSwap(true);
+
+    // Demo Mode: Just simulate success
+    if (isDemoMode) {
+      await new Promise(r => setTimeout(r, 600));
+      setModal({ isOpen: false, selectedDate: null, offeredSwapDate: null, reason: '' });
+      setError(null);
+      alert('✅ Αίτημα ανταλλαγής στάλθηκε!');
+      setIsSubmittingSwap(false);
+      return;
+    }
+
     try {
       const { error: err } = await supabase
         .from('swap_requests')
