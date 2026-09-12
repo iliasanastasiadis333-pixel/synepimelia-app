@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Synepimelia</string>
+    <string name="title_activity_main">Synepimelia</string>
+    <string name="package_name">com.synepimelia.app</string>
+    <string name="custom_url_scheme">com.synepimelia.app</string>
+</resources>
