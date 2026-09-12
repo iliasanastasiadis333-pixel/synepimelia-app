@@ -29,10 +29,11 @@ interface SwapRequestRecord {
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const swapRequestId = params.id;
+    const { id } = await params;
+    const swapRequestId = id;
 
     // 1. Verify authentication
     const authHeader = request.headers.get('authorization');

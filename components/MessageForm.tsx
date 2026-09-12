@@ -62,8 +62,9 @@ export function MessageForm({ caseId }: { caseId: string }) {
     try {
       if (isDemoMode) {
         // Demo mode: simulate tone analysis
+        let tone: 'neutral' | 'negative' | 'concerning' = 'neutral';
         const mockToneAnalysis = {
-          tone: 'neutral' as const,
+          tone,
           score: 0.3,
           flags: [] as string[],
           suggested_alternative: messageContent,
@@ -71,7 +72,8 @@ export function MessageForm({ caseId }: { caseId: string }) {
 
         // Simulate harsh message detection
         if (messageContent.toLowerCase().includes('ξέρω')) {
-          mockToneAnalysis.tone = 'negative';
+          tone = 'negative';
+          mockToneAnalysis.tone = tone;
           mockToneAnalysis.score = 0.8;
           mockToneAnalysis.flags = ['Επιθετικό ύφος', 'Αρνητικές λέξεις'];
           mockToneAnalysis.suggested_alternative = 'Θα ήθελα να συζητήσουμε...';
