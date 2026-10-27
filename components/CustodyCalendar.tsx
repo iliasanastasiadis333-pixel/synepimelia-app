@@ -190,19 +190,19 @@ export function CustodyCalendar({ caseId }: { caseId: string }) {
       )}
 
       {/* Navigation */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center gap-2 mb-6">
         <button
           onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1))}
-          className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+          className="px-2 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
         >
-          ← Προηγούμενος
+          ←<span className="hidden sm:inline"> Προηγούμενος</span>
         </button>
-        <h2 className="text-xl font-bold text-gray-900 capitalize">{monthName}</h2>
+        <h2 className="text-base sm:text-xl font-bold text-gray-900 capitalize text-center">{monthName}</h2>
         <button
           onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1))}
-          className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+          className="px-2 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
         >
-          Επόμενος →
+          <span className="hidden sm:inline">Επόμενος </span>→
         </button>
       </div>
 
@@ -222,7 +222,7 @@ export function CustodyCalendar({ caseId }: { caseId: string }) {
       {loading ? (
         <div className="text-center py-8 text-gray-500">Φόρτωση ημερολογίου...</div>
       ) : (
-        <div className="grid grid-cols-7 gap-2">
+        <div className="grid grid-cols-7 gap-1 sm:gap-2">
           {/* Days of week headers */}
           {['Δευ', 'Τρί', 'Τετ', 'Πέ', 'Παρ', 'Σάβ', 'Κυρ'].map(day => (
             <div key={day} className="text-center font-bold text-gray-700 py-2 text-sm">
@@ -247,7 +247,7 @@ export function CustodyCalendar({ caseId }: { caseId: string }) {
             return (
               <div
                 key={date.toISOString()}
-                className={`aspect-square p-2 border-2 rounded-lg cursor-pointer transition hover:shadow-md ${bgClass} ${
+                className={`aspect-square p-1 sm:p-2 border-2 rounded-lg cursor-pointer transition hover:shadow-md ${bgClass} ${
                   isToday_ ? 'ring-4 ring-yellow-400' : ''
                 } ${isPast_ ? 'opacity-60' : ''}`}
                 onClick={() => !isPast_ && handleSwapClick(date)}
