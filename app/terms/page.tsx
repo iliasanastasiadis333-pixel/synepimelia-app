@@ -154,7 +154,7 @@ export default function TermsPage() {
               Για ερωτήσεις σχετικά με αυτούς τους όρους, παρακαλούμε επικοινωνήστε:
             </p>
             <p className="mb-2">
-              <strong>Email:</strong> support@synepimelia.gr
+              <strong>Email:</strong> iliasanastasiadis333@gmail.com
             </p>
             <p>
               <strong>Διεύθυνση:</strong> Αθήνα, Ελλάδα

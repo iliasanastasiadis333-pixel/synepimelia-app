@@ -190,7 +190,7 @@ export default function PrivacyPage() {
               </div>
             </div>
             <p className="mt-4">
-              Για άσκηση οποιουδήποτε δικαιώματος, επικοινωνήστε στο privacy@synepimelia.gr με αίτημα GDPR.
+              Για άσκηση οποιουδήποτε δικαιώματος, επικοινωνήστε στο iliasanastasiadis333@gmail.com με αίτημα GDPR.
             </p>
             <p className="mt-4">
               <strong>Διαγραφή λογαριασμού:</strong> μπορείς να διαγράψεις τον λογαριασμό σου απευθείας από το dashboard,
@@ -240,7 +240,7 @@ export default function PrivacyPage() {
               Ορίσαμε Αξιωματούχο Προστασίας Δεδομένων για επιτήρηση συμμόρφωσης με το GDPR:
             </p>
             <p className="mb-2">
-              <strong>Email DPO:</strong> dpo@synepimelia.gr
+              <strong>Email DPO:</strong> iliasanastasiadis333@gmail.com
             </p>
           </section>
 
