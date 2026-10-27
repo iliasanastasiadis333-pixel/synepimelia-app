@@ -25,7 +25,7 @@ export default function PrivacyPage() {
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h1 className="text-4xl font-bold text-gray-900 mb-2">Πολιτική Απορρήτου & GDPR</h1>
-        <p className="text-gray-600 text-sm mb-8">Ημερομηνία τελευταίας ενημέρωσης: 12 Σεπτεμβρίου 2026</p>
+        <p className="text-gray-600 text-sm mb-8">Ημερομηνία τελευταίας ενημέρωσης: 27 Οκτωβρίου 2026</p>
 
         <div className="prose prose-lg max-w-none text-gray-700 space-y-8">
           {/* GDPR Compliance */}
@@ -59,7 +59,7 @@ export default function PrivacyPage() {
                   <li>ΑΦΜ (Αριθμός Φορολογικού Μητρώου)</li>
                   <li>Στοιχεία ταυτότητας/διαβατηρίου</li>
                   <li>Ομάδα αίματος</li>
-                  <li>Αλλεργίες και ιστορικό εμβολιασμών</li>
+                  <li>Ιστορικό εμβολιασμών</li>
                 </ul>
               </div>
               <div>
@@ -109,11 +109,9 @@ export default function PrivacyPage() {
               <p className="font-semibold text-green-900 mb-3">Μέτρα ασφαλείας που λαμβάνουμε:</p>
               <ul className="list-disc list-inside space-y-2 text-green-800 text-sm">
                 <li><strong>Κρυπτογράφηση TLS/SSL:</strong> Για όλες τις μεταφορές δεδομένων</li>
-                <li><strong>Κρυπτογράφηση end-to-end:</strong> Για τα μηνύματα επικοινωνίας</li>
-                <li><strong>Row Level Security (RLS):</strong> Κάθε γονέας βλέπει μόνο τα δικά του δεδομένα</li>
-                <li><strong>Ασφαλή κωδικολέξεις:</strong> Bcrypt hashing με salt</li>
-                <li><strong>Αυτόματα backup:</strong> Με κρυπτογράφηση σε ασφαλείς θέσεις</li>
-                <li><strong>Δεν αποθηκεύουμε κωδικούς:</strong> Χρησιμοποιούμε μόνο κρυπτογραφημένα hashes</li>
+                <li><strong>Κρυπτογράφηση αποθήκευσης:</strong> Τα δεδομένα είναι κρυπτογραφημένα στη βάση δεδομένων</li>
+                <li><strong>Row Level Security (RLS):</strong> Κάθε γονέας βλέπει μόνο τα δεδομένα της υπόθεσής του</li>
+                <li><strong>Ασφαλείς κωδικοί:</strong> Οι κωδικοί αποθηκεύονται μόνο ως κρυπτογραφημένο hash (bcrypt)</li>
               </ul>
             </div>
             <p>
@@ -140,7 +138,7 @@ export default function PrivacyPage() {
                 <strong>Σε δικηγόρους/διαμεσολαβητές:</strong> Εάν τις περιλάβετε στη υπόθεση
               </li>
               <li>
-                <strong>Δεν πουλάμε δεδομένα:</strong> Σε τρίτο και δεν χρησιμοποιούμε για marketing
+                <strong>Δεν πουλάμε δεδομένα</strong> σε τρίτους και δεν τα χρησιμοποιούμε για marketing
               </li>
             </ul>
           </section>
@@ -193,6 +191,10 @@ export default function PrivacyPage() {
             </div>
             <p className="mt-4">
               Για άσκηση οποιουδήποτε δικαιώματος, επικοινωνήστε στο privacy@synepimelia.gr με αίτημα GDPR.
+            </p>
+            <p className="mt-4">
+              <strong>Διαγραφή λογαριασμού:</strong> μπορείς να διαγράψεις τον λογαριασμό σου απευθείας από το dashboard,
+              στην ενότητα «Διαγραφή λογαριασμού». Η διαγραφή αφαιρεί το email και τα στοιχεία σύνδεσης και απενεργοποιεί τον λογαριασμό.
             </p>
           </section>
 

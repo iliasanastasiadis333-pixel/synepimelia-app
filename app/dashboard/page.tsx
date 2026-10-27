@@ -18,6 +18,9 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState<'calendar' | 'messages' | 'swaps' | 'expenses' | 'infobank'>('calendar');
+  const [deleteConfirmText, setDeleteConfirmText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
 
   // Check if user is logged in on mount
   useEffect(() => {
@@ -107,6 +110,31 @@ export default function Dashboard() {
     setCaseId(DEMO_CASE_ID);
     setEmail('');
     setPassword('');
+  };
+
+  const handleDeleteAccount = async () => {
+    setIsDeleting(true);
+    setDeleteError('');
+
+    try {
+      const { data } = await supabase.auth.getSession();
+      const token = data.session?.access_token;
+      if (!token) throw new Error('Δεν βρέθηκε ενεργή συνεδρία');
+
+      const response = await fetch('/api/account/delete', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!response.ok) throw new Error('Η διαγραφή απέτυχε. Δοκιμάστε ξανά.');
+
+      await supabase.auth.signOut();
+      localStorage.clear();
+      window.location.href = '/';
+    } catch (err) {
+      setDeleteError(err instanceof Error ? err.message : 'Η διαγραφή απέτυχε');
+      setIsDeleting(false);
+    }
   };
 
   // Login Screen
@@ -407,6 +435,43 @@ export default function Dashboard() {
           </div>
         )}
       </div>
+
+      {!isDemoMode && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+          <div className="bg-white rounded-lg shadow p-6 border border-red-200 space-y-4">
+            <div>
+              <h3 className="text-lg font-bold text-gray-900">Διαγραφή λογαριασμού</h3>
+              <p className="text-sm text-gray-600 mt-1">
+                Τα προσωπικά σας στοιχεία διαγράφονται και ο λογαριασμός σας δεν μπορεί να ξαναχρησιμοποιηθεί.
+                Τα κοινά δεδομένα της υπόθεσης (μηνύματα, έξοδα, πρόγραμμα) παραμένουν για τον άλλο γονέα,
+                με την ταυτότητά σας ανωνυμοποιημένη.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="text"
+                value={deleteConfirmText}
+                onChange={(e) => setDeleteConfirmText(e.target.value)}
+                placeholder='Πληκτρολογήστε "ΔΙΑΓΡΑΦΗ"'
+                disabled={isDeleting}
+                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+              />
+              <button
+                onClick={handleDeleteAccount}
+                disabled={deleteConfirmText !== 'ΔΙΑΓΡΑΦΗ' || isDeleting}
+                className="px-4 py-2.5 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+              >
+                {isDeleting ? 'Διαγραφή...' : 'Διαγραφή λογαριασμού'}
+              </button>
+            </div>
+            {deleteError && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
+                {deleteError}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <div className="bg-white border-t border-gray-200 mt-16 py-8">

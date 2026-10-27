@@ -131,7 +131,7 @@ export default function LandingPage() {
                 <div className="flex gap-4">
                   <div className="flex-shrink-0 w-6 h-6 text-green-600 font-bold text-xl">✓</div>
                   <p className="text-gray-600">
-                    <strong>Κρυπτογράφηση end-to-end</strong> για όλες τις επικοινωνίες
+                    <strong>Κρυπτογράφηση</strong> στη μεταφορά (TLS) και στην αποθήκευση των δεδομένων
                   </p>
                 </div>
                 <div className="flex gap-4">
